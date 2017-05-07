@@ -40,17 +40,15 @@ public class SeryRepositoryJ8Impl implements SeryRepository {
                 .orElseThrow(NoSuchSerException::new);
     }
 
-/*    @Override
+    @Override
     public Ser create(Ser ser) {
-        if (!ser.isEmpty()) {
+        
             ser.setNumerKatalogowy(
                     this.sery.stream().mapToLong(p -> p.getNumerKatalogowy()).max().getAsLong() + 1);
-        } else {
-            ser.setNumerKatalogowy(1L);
-        }
+        
         this.sery.add(ser);
         return ser;
-    }*/
+    }
 
     @Override
     public Ser update(Ser ser) throws NoSuchSerException {
@@ -73,10 +71,10 @@ public class SeryRepositoryJ8Impl implements SeryRepository {
         throw new NoSuchSerException("Nie ma takiego Sera: " + id);
     }
 
-	@Override
+/*	@Override
 	public Ser create(Ser Ser) throws SerAlreadyExistsException {
 		// TODO Auto-generated method stub
 		return null;
-	}
+	}*/
 
 }
