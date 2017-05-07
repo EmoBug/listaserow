@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head th:replace="layout ::site-head">
+<title>Lista serow</title>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<link rel="stylesheet" type="text/css" media="all" href="../../css/klaser.css" th:href="@{/css/klaser.css}" />
+</head>
+
+<body>
+  <header th:replace="layout :: site-header" />
+  <div>
+    <h2 th:text="#{title.list}" style="display: inline;">Lista serów</h2>
+  </div>
+  
+  <div class="listaSerow" th:unless="${#lists.isEmpty(cheesesAll)}">
+    <table>
+      <thead>
+        <tr>
+          <th th:text="#{klaser.numerKatalogowy}">numerKatalogowy</th>
+          <th th:text="#{klaser.opis}">Opis</th>
+          <th th:text="#{klaser.nazwa}">Nazwa</th>
+          <th th:text="#{klaser.cenaNabycia}">cenaNabycia</th>
+          <th th:text="#{klaser.dataNabycia}">dataNabycia</th>
+          <th th:text="#{klaser.krajPochodzenia}">krajPochodzenia</th>
+          <th th:text="#{klaser.status}">status</th>
+          <th th:text="#{klaser.operacje}">operacje</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr th:each="cheese : ${cheesesAll}">
+          <form action="#" th:action="@{/sery}" th:object="${cheese}" method="post">
+          <td th:text="${cheese.numerKatalogowy}">1</td>
+          <td th:text="${cheese.opis}">Długi opis</td>
+          <td th:text="${cheese.nazwa}">Gouda</td>
+          <td th:text="${{cheese.cenaNabycia}}">19.50</td>
+          <td th:text="${{cheese.dataNabycia}}">2016/13/01</td>
+          <td th:text="${cheese.krajPochodzenia}">Polska</td>
+          <td th:text="#{${'klaser.status.' + cheese.status}}">Swiezy</td>
+          <td>
+            <button type="submit" name="remove" th:value="${cheese.numerKatalogowy}" 
+            th:text="#{klaser.remove}">Dell</button>
+            
+            <a href="ser.html" th:href="@{|/sery/${cheese.numerKatalogowy}|}" >
+            <button type="button" th:text="#{klaser.edit}">Edit</button></a>              
+          </td>
+          </form>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  <footer th:replace="layout :: site-footer" />
+</body>
+</html>
