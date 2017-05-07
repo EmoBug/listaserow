@@ -3,7 +3,7 @@
 <html xmlns:th="http://www.thymeleaf.org">
 
 <head th:replace="layout ::site-head">
-<title>Lista serów</title>
+<title>Lista serow</title>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 <link rel="stylesheet" type="text/css" media="all" href="../../css/klaser.css" th:href="@{/css/klaser.css}" />
 </head>
@@ -14,7 +14,7 @@
     <h2 th:text="#{title.list}" style="display: inline;">Lista serów</h2>
   </div>
   
-  <div class="listaSerow" th:unless="${#lists.isEmpty(coinsAll)}">
+  <div class="listaSerow" th:unless="${#lists.isEmpty(cheesesAll)}">
     <table>
       <thead>
         <tr>
@@ -29,17 +29,17 @@
         </tr>
       </thead>
       <tbody>
-        <tr th:each="coin : ${coinsAll}">
-          <form action="#" th:action="@{/monety}" th:object="${coin}" method="post">
-          <td th:text="${coin.numerKatalogowy}">1</td>
-          <td th:text="${coin.opis}">Długi opis</td>
-          <td th:text="${coin.nazwa}">Gouda</td>
-          <td th:text="${{coin.cenaNabycia}}">19.50</td>
-          <td th:text="${{coin.dataNabycia}}">2016/13/01</td>
-          <td th:text="${coin.krajPochodzenia}">Polska</td>
-          <td th:text="#{${'klaser.status.' + cheese.status}}">Świeżyy</td>
+        <tr th:each="cheese : ${cheesesAll}">
+          <form action="#" th:action="@{/sery}" th:object="${cheese}" method="post">
+          <td th:text="${cheese.numerKatalogowy}">1</td>
+          <td th:text="${cheese.opis}">Długi opis</td>
+          <td th:text="${cheese.nazwa}">Gouda</td>
+          <td th:text="${{cheese.cenaNabycia}}">19.50</td>
+          <td th:text="${{cheese.dataNabycia}}">2016/13/01</td>
+          <td th:text="${cheese.krajPochodzenia}">Polska</td>
+          <td th:text="#{${'klaser.status.' + cheese.status}}">Swiezy</td>
           <td>
-            <button type="submit" name="remove" th:value="${coin.numerKatalogowy}" 
+            <button type="submit" name="remove" th:value="${cheese.numerKatalogowy}" 
             th:text="#{klaser.remove}">Dell</button>
             
             <a href="ser.html" th:href="@{|/sery/${cheese.numerKatalogowy}|}" >
